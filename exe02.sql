@@ -1,54 +1,28 @@
-create database db_pizzaria_legal;
+create database Ecommerce;
 
-use db_pizzaria_legal;
+use Ecommerce;
 
-create table tb_categorias (
+create table produtos(
 id bigint auto_increment,
-Borda  varchar(250) ,
-Recheio  varchar(250) ,
-Tamanho  varchar(250) ,
-validade date ,
-acompanhamento  varchar(250), 
+nome varchar(200) not null,
+atributos varchar(200),
+valor decimal not null,
 primary key (id)
 );
 
-insert into tb_categorias ( Borda, Recheio, Tamanho, validade, acompanhamento)
-values  ("Doce", "Chocolate", "Mini" , "2022-05-26" , "batata frita"),
-("Salgada", "Queijo", "Grande" , "2022-07-26" , "Suco"),
-("Salgada", "Cremily", "Pequeno" , "2022-08-26" , "Refri"),
-("Doce", "sem", "mini" , "2022-02-26" , "Cerveja"),
-("Salgada", "Catupiry", "Família" , "2022-04-26" , "Água");
+insert into produtos(nome, atributos, valor) values ("Batom", "vermelho impulse", 350);
+insert into produtos(nome, atributos, valor) values ("Blush", "rosa com glitter", 200);
+insert into produtos(nome, atributos, valor) values ("Lápis de olho", "Preto", 800);
+insert into produtos(nome, atributos, valor) values ("Pó compacto", "Pele escura",90);
+insert into produtos(nome, atributos, valor) values ("Cílios", "Imã", 800);
 
-SELECT * FROM tb_categorias;
 
-create table tb_pizzas (
-id bigint AUTO_INCREMENT,
-nome varchar(255) NOT NULL,
-quantidade int, 
-preco decimal(6, 2),
-categoria_id bigint, 
-PRIMARY KEY (id),
-FOREIGN KEY (categoria_id) REFERENCES tb_categorias(id)
-);
+select * from produtos;
 
-insert into tb_pizzas (nome, quantidade , preco, categoria_id)
-values ("4 queijos" ,2, 30.60, 2),
-("RomeuJulieta" , 1, 15.80 , 1),
-("GenUva", 2 , 90.00, 1),
-("Mussarela" ,3, 50.60, 2),
-("Calabresa" , 1, 70.80 , 2),
-("Merengue", 2 , 95.00, 1);
+select * from produtos where valor > 500;
 
-SELECT * FROM tb_pizzas;
+select * from produtos where valor < 500;
 
-select * from tb_pizzas where preco > 45;
+update produtos set valor = 500 where id = 2;
 
-select * from tb_pizzas where preco between 50 and 100;
-
-select * from tb_pizzas where nome like "%m%";
-
-SELECT * from tb_pizzas inner join tb_categorias 
-on tb_pizzas.categoria_id = tb_categorias.id;
--- puxei a pizza salgada
-SELECT * from tb_pizzas inner join tb_categorias 
-on tb_pizzas.categoria_id = tb_categorias.id where tb_pizzas.categoria_id =2;
+select * from produtos
