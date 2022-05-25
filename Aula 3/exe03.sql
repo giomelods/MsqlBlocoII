@@ -50,14 +50,7 @@ select * from tb_produto where produto like "%C%";
 
 SELECT * from tb_produto inner JOIN tb_categoria 
 ON tb_produto.categoria_id = tb_categoria.id;
-
+-- categoria mamãe e bebê
 SELECT * from tb_produto inner JOIN tb_categoria 
 ON tb_produto.categoria_id = tb_categoria.id where tb_categoria.nome="Mamãe E Bebê";
 
--- INNER JOIN de uma categoria específica = MEDICAMENTOS GENÉRICOS
-SELECT pr.nomeProd "Produto", pr.descricao "Descrição Produto", pr.marca, concat('R$',pr.preco) "Preço", 
-ca.nomeCategoria "Categoria", ca.descricao "Descricao Categoria"
-FROM tb_produto pr
-JOIN tb_categoria ca
-ON ca.idCategoria = pr.categoria
-WHERE ca.nomeCategoria LIKE 'MEDICAMENTOS%';
